@@ -1,0 +1,15 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+underthesea
+wordcloud
+pandas_profiling
+scikit-learn
+nltk
+scipy
+statsmodels
+regex
+demoji
+
