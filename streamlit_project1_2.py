@@ -25,15 +25,15 @@ import pickle
 # Part 1: Build project
 
 # load data
-df = pd.read_csv('processed_data.csv', encoding='utf-8')
+# df = pd.read_csv('processed_data.csv', encoding='utf-8')
 
 # Data pre - processing
 
 # remove duplicate
-df.drop_duplicates(inplace=True)
+# df.drop_duplicates(inplace=True)
 
 # remove missing values
-df.dropna(inplace=True)
+# df.dropna(inplace=True)
 
 
 
@@ -82,16 +82,16 @@ vectorizer = pickle.load(open('tfidf.pkl', 'rb'))
 
 
 # split data into train and test
-X_train, X_test, y_train, y_test = train_test_split(df['comment'], df['sentiment'], test_size=0.2, random_state=42)
+# X_train, X_test, y_train, y_test = train_test_split(df['comment'], df['sentiment'], test_size=0.2, random_state=42)
 
-# transform data
-X_test_tfidf = vectorizer.transform(X_test)
+# # transform data
+# X_test_tfidf = vectorizer.transform(X_test)
 
 # load model
 model = pickle.load(open('finalized_model_2.sav', 'rb'))
 
-y_pred = model.predict(X_test_tfidf)
-cm = confusion_matrix(y_test, y_pred)
+# y_pred = model.predict(X_test_tfidf)
+# cm = confusion_matrix(y_test, y_pred)
 
 
 # Part 2: Build app
@@ -105,7 +105,9 @@ st.markdown('#### Project: Sentiment analysis of Vietnamese comments on Shopee')
 
 # st.video('https://www.youtube.com/watch?v=q3nSSZNOg38&list=PLFTWPHJsZXVVnckL0b3DYmHjjPiRB5mqX')
 
-menu = ['Overview', 'Build Model', 'New Prediction']
+menu = ['Overview',
+        # 'Build Model', 
+        'New Prediction']
 choice = st.sidebar.selectbox('Menu', menu)
 
 if choice == 'Overview':
@@ -131,44 +133,44 @@ if choice == 'Overview':
     - The model has 73% precision for the negative class.
     - The model has 88% recall for the negative class. 
     ''')
-elif choice == 'Build Model':
-    st.subheader('Build Model')
-    st.write('#### Data Preprocessing')
-    st.write('##### Show data')
-    st.table(df.head())
-    # plot bar chart for sentiment
-    st.write('##### Bar chart for sentiment')
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.bar(df['sentiment'].value_counts().index, df['sentiment'].value_counts().values)
-    ax.set_xticks(df['sentiment'].value_counts().index)
-    ax.set_xticklabels(['Positive', 'Negative'])
-    ax.set_ylabel('Number of comments')
-    ax.set_title('Bar chart for sentiment')
-    st.pyplot(fig)
+# elif choice == 'Build Model':
+#     st.subheader('Build Model')
+#     st.write('#### Data Preprocessing')
+#     st.write('##### Show data')
+#     st.table(df.head())
+#     # plot bar chart for sentiment
+#     st.write('##### Bar chart for sentiment')
+#     fig, ax = plt.subplots(figsize=(10, 5))
+#     ax.bar(df['sentiment'].value_counts().index, df['sentiment'].value_counts().values)
+#     ax.set_xticks(df['sentiment'].value_counts().index)
+#     ax.set_xticklabels(['Positive', 'Negative'])
+#     ax.set_ylabel('Number of comments')
+#     ax.set_title('Bar chart for sentiment')
+#     st.pyplot(fig)
     
-    # plot wordcloud for positive and negative comments
-    st.write('##### Wordcloud for positive comments')
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.imshow(WordCloud(width=800, height=400, background_color='white').generate(' '.join(df[df['sentiment'] == 1]['comment'])))
-    ax.axis('off')
-    st.pyplot(fig)
+#     # plot wordcloud for positive and negative comments
+#     st.write('##### Wordcloud for positive comments')
+#     fig, ax = plt.subplots(figsize=(10, 5))
+#     ax.imshow(WordCloud(width=800, height=400, background_color='white').generate(' '.join(df[df['sentiment'] == 1]['comment'])))
+#     ax.axis('off')
+#     st.pyplot(fig)
     
-    st.write('##### Wordcloud for negative comments')
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.imshow(WordCloud(width=800, height=400, background_color='white').generate(' '.join(df[df['sentiment'] == 0]['comment'])))
-    ax.axis('off')
-    st.pyplot(fig)
+#     st.write('##### Wordcloud for negative comments')
+#     fig, ax = plt.subplots(figsize=(10, 5))
+#     ax.imshow(WordCloud(width=800, height=400, background_color='white').generate(' '.join(df[df['sentiment'] == 0]['comment'])))
+#     ax.axis('off')
+#     st.pyplot(fig)
     
-    st.write('#### Build model and evaluation:')
-    st.write('##### Confusion matrix')
-    st.table(cm)
-    st.write('##### Classification report')
-    st.table(classification_report(y_test, y_pred, 
-                                    output_dict=True
-                                    ))
-    st.write('##### Accuracy')
-    # show accuracy as percentage with 2 decimal places
-    st.write(f'{accuracy_score(y_test, y_pred)*100:.2f}%')
+#     st.write('#### Build model and evaluation:')
+#     st.write('##### Confusion matrix')
+#     st.table(cm)
+#     st.write('##### Classification report')
+#     st.table(classification_report(y_test, y_pred, 
+#                                     output_dict=True
+#                                     ))
+#     st.write('##### Accuracy')
+#     # show accuracy as percentage with 2 decimal places
+#     st.write(f'{accuracy_score(y_test, y_pred)*100:.2f}%')
     
 elif choice == 'New Prediction':
     st.subheader('New Prediction')
