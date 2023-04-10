@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import underthesea as uts
 from wordcloud import WordCloud,STOPWORDS
-import pandas_profiling
+# import pandas_profiling
 # import scikit-learn
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
