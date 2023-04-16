@@ -37,20 +37,20 @@ warnings.filterwarnings("ignore")
 #---------------------------------------------------------------------------------------------
 @st.cache_data
 def df():
-    df = pd.read_csv('data/Products_Shopee_comments_cleaned_ver01.csv')
+    df = pd.read_csv('Products_Shopee_comments_cleaned_ver01.csv')
     return df
 #---------------------------------------------------------------------------------------------
 @st.cache_data
 def load_model_Sentiment():
     # Đọc model LogisticRegression()
-    pkl_filename = "model/Sentiment_model_best.pkl"
+    pkl_filename = "Sentiment_model_best.pkl"
     with open(pkl_filename, 'rb') as file:
         model = pickle.load(file)
     return model
 #---------------------------------------------------------------------------------------------
 @st.cache_data
 def load_model_cv():
-    filename = "model/cv_model.pkl"
+    filename = "cv_model.pkl"
     with open(filename, 'rb') as file:
         cv = pickle.load(file)
     return cv
