@@ -10,3 +10,4 @@ demoji
 pyvi
 emoji
 imblearn
+openpyxl
